@@ -240,7 +240,11 @@ class exports.LeanKitClient
       parsed = parseBody body
       parseReplyData err, parsed, callback
 
-	createIntegrationBoard: ( templateName, hyperlinkTemplate, prefix, title, callback ) ->
-		data = { templateName: templateName, hyperlinkTemplate: hyperlinkTemplate, prefix: prefix, title:title }
-		@client.post 'createIntegrationBoard', data, (err, res, body) ->
-			parseReplyData err, body, callback
+  createIntegrationBoard: ( templateName, hyperlinkTemplate, prefix, title, callback ) ->
+    data = { templateName: templateName, hyperlinkTemplate: hyperlinkTemplate, prefix: prefix, title:title }
+    @client.post 'createIntegrationBoard', data, (err, res, body) ->
+      parseReplyData err, body, callback
+
+  getToken: (name, callback) ->
+    @client.get 'token/' + encodeURIComponent(name), (err, res, body) ->
+      parseReplyData err, body, callback

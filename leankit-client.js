@@ -387,6 +387,12 @@
       });
     };
 
+    LeanKitClient.prototype.getToken = function(name, callback) {
+      return this.client.get('token/' + encodeURIComponent(name), function(err, res, body) {
+        return parseReplyData(err, body, callback);
+      });
+    };
+
     return LeanKitClient;
 
   })();
